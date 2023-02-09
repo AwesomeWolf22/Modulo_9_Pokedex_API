@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'VT323', monospace;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image: url('../images/forest.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-attachment: fixed;
+}
+
+/** -------------------------------------------------------------------------------------- **/
+
+main {
+    width: 90%;
+    max-width: 930px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px 1%;
+    border-radius: 12px;
+}
+
+main h1 {
+    font-size: 42px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 8px;
+}
+
+main .btn-wraper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+main .btn-wraper span {
+    font-size: 42px;
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    user-select: none;
+}
+
+main .btn-wraper span.btn {
+    cursor: pointer;
+}
+
+main .btn-wraper span.btn:hover {
+    background-color: black;
+    color: #ccc;
+}
+
+main .btn-wraper span.left {
+
+}
+
+main .btn-wraper span.right {
+    
+}
+
+/** -------------------------------------------POKEMON CONTAINER------------------------------------------- **/
+
+.pokemon-container {
+    padding: 10px;
+    display: inline-block;
+}
+
+/** -------------------------------------------POKEMON BOX------------------------------------------- **/
+
+.pokemon-box {
+    width: calc(25% - 16px);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 8px 8px;
+    float: left;
+}
+
+.pokemon-box img {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.pokemon-box .info {
+    width: 100%;
+}
+
+.pokemon-box .info span.name {
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+@media screen and (max-width:600px) {
+
+    .pokemon-box {
+        width: calc(33.33% - 16px);
+    }
+
+}
+
+@media screen and (max-width:400px) {
+
+    .pokemon-box {
+        width: calc(50% - 16px);
+    }
+    
+}
+
+@media screen and (max-width:300px) {
+
+    .pokemon-box {
+        width: calc(100% - 16px);
+    }
+    
+}
