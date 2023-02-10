@@ -45,7 +45,7 @@ function changePageNumber(page){
 
 }
 
-function fetchPokemons(url, options = {}){
+function fetchPokemons(url){
 
     loading.style.display = 'flex';
 
@@ -58,6 +58,8 @@ function fetchPokemons(url, options = {}){
             fetch(val.url).then(response => response.json()).then(pokemonSingle => {
 
                 pokemons.push({nome : val.name, img : pokemonSingle.sprites.front_default, id:pokemonSingle.id});
+
+                console.log(pokemonSingle)
 
                 if(pokemons.length == 12){
                     
@@ -87,8 +89,6 @@ function addPokemons(){
         pokemons.sort(function(a,b){
             return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
         });
-
-        console.log(pokemons[i])
     
         container.innerHTML += `
         
