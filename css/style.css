@@ -103,7 +103,7 @@ section.load .loadAnimation .wave:nth-of-type(9) {
 
 main {
     width: 90%;
-    max-width: 930px;
+    max-width: 880px;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 15px 1%;
     border-radius: 12px;
@@ -179,7 +179,7 @@ main .btn-wraper span.right {
     width: 100%;
 }
 
-.pokemon-box .info span.name {
+.pokemon-box .info span {
     text-align: center;
     display: block;
     font-weight: bold;

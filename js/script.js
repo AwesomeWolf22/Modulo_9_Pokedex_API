@@ -19,7 +19,7 @@ for(let i = 0; i < left.length; i++){
             page--;
         }
 
-        fetchPokemons(offset);
+        fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
 
     });
 }
@@ -30,7 +30,7 @@ for(let i = 0; i < right.length; i++){
 
         offset+=12;
         page++;
-        fetchPokemons(offset);
+        fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
 
     });
 }
@@ -45,11 +45,11 @@ function changePageNumber(page){
 
 }
 
-function fetchPokemons(offset){
+function fetchPokemons(url, options = {}){
 
     loading.style.display = 'flex';
 
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset)
+    fetch(url)
     .then(response => response.json())
     .then(allpokemon => {
 
@@ -57,13 +57,15 @@ function fetchPokemons(offset){
 
             fetch(val.url).then(response => response.json()).then(pokemonSingle => {
 
-                pokemons.push({nome : val.name, img : pokemonSingle.sprites.front_default});
+                pokemons.push({nome : val.name, img : pokemonSingle.sprites.front_default, id:pokemonSingle.id});
 
                 if(pokemons.length == 12){
+                    
                     addPokemons();
                     changePageNumber(page);
                     pokemons = [];
                     loading.style.display = 'none';
+
                 }
 
             });
@@ -74,13 +76,19 @@ function fetchPokemons(offset){
 
 }
 
-fetchPokemons(offset);
+fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
 
 function addPokemons(){
 
     container.innerHTML = ""
 
     for(let i = 0; i < pokemons.length; i++){
+
+        pokemons.sort(function(a,b){
+            return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+        });
+
+        console.log(pokemons[i])
     
         container.innerHTML += `
         
@@ -88,6 +96,7 @@ function addPokemons(){
             <img src="${pokemons[i].img}", alt="">
             <div class="info">
                 <span class="name">${pokemons[i].nome}</span><!--name-->
+                <span class="id">id:${pokemons[i].id}</span><!--id-->
             </div><!--info--></div>
         <!--pokemon-box-->`
     }
