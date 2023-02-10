@@ -93,12 +93,3 @@ function addPokemons(){
     }
 
 }
-
-async function load(offset){
-
-    
-
-    
-
-}
-
