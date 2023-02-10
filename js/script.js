@@ -6,7 +6,9 @@ var page = 1;
 var left = document.querySelectorAll('.btn-wraper .left');
 var right = document.querySelectorAll('.btn-wraper .right');
 
-var pageSpan = document.querySelectorAll('.btn-wraper .pageNumber')
+var pageSpan = document.querySelectorAll('.btn-wraper .pageNumber');
+
+var loading = document.querySelector('section.load');
 
 for(let i = 0; i < left.length; i++){
 
@@ -17,7 +19,7 @@ for(let i = 0; i < left.length; i++){
             page--;
         }
 
-        fetchPokemons(offset)
+        fetchPokemons(offset);
 
     });
 }
@@ -28,7 +30,7 @@ for(let i = 0; i < right.length; i++){
 
         offset+=12;
         page++;
-        fetchPokemons(offset)
+        fetchPokemons(offset);
 
     });
 }
@@ -45,6 +47,8 @@ function changePageNumber(page){
 
 function fetchPokemons(offset){
 
+    loading.style.display = 'flex';
+
     fetch('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset)
     .then(response => response.json())
     .then(allpokemon => {
@@ -59,6 +63,7 @@ function fetchPokemons(offset){
                     addPokemons();
                     changePageNumber(page);
                     pokemons = [];
+                    loading.style.display = 'none';
                 }
 
             });
@@ -86,6 +91,14 @@ function addPokemons(){
             </div><!--info--></div>
         <!--pokemon-box-->`
     }
+
+}
+
+async function load(offset){
+
+    
+
+    
 
 }
 
