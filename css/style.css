@@ -188,6 +188,14 @@ main .btn-wraper span.right {
 
 @media screen and (max-width:600px) {
 
+    body {
+        align-items: flex-start;
+    }
+
+    main {
+        margin: 20px 0;
+    }
+
     .pokemon-box {
         width: calc(33.33% - 16px);
     }

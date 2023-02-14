@@ -19,6 +19,10 @@ for(let i = 0; i < left.length; i++){
             page--;
         }
 
+        let rand = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+
+        document.querySelector('audio#blip'+rand).play();
+
         fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
 
     });
@@ -30,6 +34,8 @@ for(let i = 0; i < right.length; i++){
 
         offset+=12;
         page++;
+        let rand = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+        document.querySelector('audio#blip'+rand).play();
         fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
 
     });
@@ -58,8 +64,6 @@ function fetchPokemons(url){
             fetch(val.url).then(response => response.json()).then(pokemonSingle => {
 
                 pokemons.push({nome : val.name, img : pokemonSingle.sprites.front_default, id:pokemonSingle.id});
-
-                console.log(pokemonSingle)
 
                 if(pokemons.length == 12){
                     
@@ -93,7 +97,7 @@ function addPokemons(){
         container.innerHTML += `
         
         <div class="pokemon-box">
-            <img src="${pokemons[i].img}", alt="">
+            <img src="${pokemons[i].img}", alt="${pokemons[i].nome} image">
             <div class="info">
                 <span class="name">${pokemons[i].nome}</span><!--name-->
                 <span class="id">id:${pokemons[i].id}</span><!--id-->
