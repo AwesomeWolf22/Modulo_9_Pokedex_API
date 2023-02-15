@@ -1,29 +1,40 @@
 var pokemons = [];
 var container = document.querySelector('.pokemon-container');
+
 var offset = 0;
 var page = 1;
+
+var lastOffset;
+var lastPage;
 
 var left = document.querySelectorAll('.btn-wraper .left');
 var right = document.querySelectorAll('.btn-wraper .right');
 
 var pageSpan = document.querySelectorAll('.btn-wraper .pageNumber');
 
-var loading = document.querySelector('section.load');
+var loading = document.querySelector('section#load');
+var error = document.querySelector('section#error');
+var rand;
 
 for(let i = 0; i < left.length; i++){
 
     left[i].addEventListener('click',function(){
 
         if(offset != 0){
+
+            lastOffset = offset;
+            lastPage = page;
+
             offset-=12;
             page--;
+
+            playSong();
+
+            document.querySelector('audio#blip'+rand).play();
+
+            fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
+
         }
-
-        let rand = Math.floor(Math.random() * (5 - 1 + 1) + 1);
-
-        document.querySelector('audio#blip'+rand).play();
-
-        fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
 
     });
 }
@@ -32,10 +43,21 @@ for(let i = 0; i < right.length; i++){
 
     right[i].addEventListener('click',function(){
 
+        lastOffset = offset;
+        lastPage = page;
+
         offset+=12;
         page++;
-        let rand = Math.floor(Math.random() * (5 - 1 + 1) + 1);
-        document.querySelector('audio#blip'+rand).play();
+
+        console.log(`
+        lastOffset:${lastOffset}
+        offset:${offset}
+        lastPage:${lastPage}
+        page:${page}
+        `)
+
+        playSong();
+
         fetchPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset='+offset);
 
     });
@@ -61,7 +83,9 @@ function fetchPokemons(url){
 
         allpokemon.results.map(function(val){
 
-            fetch(val.url).then(response => response.json()).then(pokemonSingle => {
+            fetch(val.url)
+            .then(response => response.json())
+            .then(pokemonSingle => {
 
                 pokemons.push({nome : val.name, img : pokemonSingle.sprites.front_default, id:pokemonSingle.id});
 
@@ -74,9 +98,17 @@ function fetchPokemons(url){
 
                 }
 
+            }).catch(function(e){
+
+                getError(e)
+
             });
 
         });
+
+    }).catch(function(e){
+
+        getError(e)
 
     });
 
@@ -106,3 +138,26 @@ function addPokemons(){
     }
 
 }
+
+function playSong(){
+
+    rand = Math.floor((Math.random() * 5) + 1);
+    document.querySelector('audio#blip'+rand).play();
+
+}
+
+function getError(e){
+
+    pokemons = [];
+    loading.style.display = 'none';
+    offset = lastOffset;
+    page = lastPage;
+    error.style.display = 'flex'
+    error.querySelector('h1#errMsg').innerHTML = e;
+    return false;
+
+}
+
+error.querySelector('span#close').addEventListener('click',function(){
+    error.style.display = 'none'
+});

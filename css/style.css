@@ -22,7 +22,7 @@ body {
     background-attachment: fixed;
 }
 
-section.load {
+section.fade {
     background-color: rgba(0, 0, 0, 0.6);
     width: 100%;
     height: 100%;
@@ -33,7 +33,7 @@ section.load {
     z-index: 999;
 }
 
-section.load .loadAnimation {
+section.fade .loadAnimation {
     width: 90%;
     max-width: 280px;
     padding: 30px 15px;
@@ -43,7 +43,7 @@ section.load .loadAnimation {
     justify-content: space-around;
 }
 
-section.load .loadAnimation .wave {
+section.fade .loadAnimation .wave {
     width: 5px;
     height: 100px;
     background-color: #ccc;
@@ -51,53 +51,86 @@ section.load .loadAnimation .wave {
     border-radius: 20px;
 }
 
-section.load .loadAnimation .wave:nth-of-type(1) {
+section.fade .loadAnimation .wave:nth-of-type(1) {
     animation-delay: 0.1s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(2) {
+section.fade .loadAnimation .wave:nth-of-type(2) {
     animation-delay: 0.2s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(3) {
+section.fade .loadAnimation .wave:nth-of-type(3) {
     animation-delay: 0.3s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(4) {
+section.fade .loadAnimation .wave:nth-of-type(4) {
     animation-delay: 0.4s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(5) {
+section.fade .loadAnimation .wave:nth-of-type(5) {
     animation-delay: 0.5s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(6) {
+section.fade .loadAnimation .wave:nth-of-type(6) {
     animation-delay: 0.6s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(7) {
+section.fade .loadAnimation .wave:nth-of-type(7) {
     animation-delay: 0.7s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(8) {
+section.fade .loadAnimation .wave:nth-of-type(8) {
     animation-delay: 0.8s;
 }
 
-section.load .loadAnimation .wave:nth-of-type(9) {
+section.fade .loadAnimation .wave:nth-of-type(9) {
     animation-delay: 0.9s;
 }
 
 @keyframes wave {
+
     0% {
-      transform: scale(0);
+        transform: scale(0);
     }
     50% {
-      transform: scale(1);
+        transform: scale(1);
     }
     100% {
-      transform: scale(0);
+        transform: scale(0);
     }
-  }
+
+}
+
+section.fade .alert {
+    width: 90%;
+    max-width: 280px;
+    padding: 30px 15px;
+    background-color: white;
+    border-radius: 0px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    border: 5px solid rgb(236, 139, 139);
+    outline: 10px solid white;
+}
+
+section.fade .alert span#close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 34px;
+    width: 36px;
+    height: 36px;
+    background-color: rgb(236, 139, 139);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+section.fade .alert span#close:hover {
+    background-color: rgb(206, 72, 72);
+}
 
 /** -------------------------------------------------------------------------------------- **/
 
